@@ -7,8 +7,10 @@ import {
   List,
 } from 'lucide-react-native';
 import { Image } from 'react-native';
+import { useStatusBarStyle } from '@/hooks/useStatusBarStyle';
 
 export default function TabLayout() {
+  useStatusBarStyle('#FFFFFFFF'); // Set status bar style for light background
   return (
     <Tabs
       screenOptions={{
