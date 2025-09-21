@@ -36,7 +36,7 @@ const userProfile = {
   location: 'Amsterdam, Netherlands',
   profileCompletion: 85,
   compatibility: 92,
-  trustScore: 92, // Added this field
+  trustScore: 4, // Added this field
   images: [
     'https://images.pexels.com/photos/1587009/pexels-photo-1587009.jpeg?auto=compress&cs=tinysrgb&w=400&h=600&fit=crop',
     'https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=400&h=600&fit=crop',
@@ -334,9 +334,9 @@ export default function ProfileScreen() {
               source={{ uri: userProfile.images[0] }}
               style={styles.profileImage}
             />
-            <TouchableOpacity style={styles.cameraButton}>
+            {/* <TouchableOpacity style={styles.cameraButton}>
               <Camera size={16} color="#FFFFFF" />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
 
           <View style={styles.profileInfo}>
@@ -346,7 +346,7 @@ export default function ProfileScreen() {
 
             <View style={styles.profileDetail}>
               <Text style={styles.profileDetailText}>
-                Trust Score: {userProfile.trustScore || 92}/100
+                Trust Score: {userProfile.trustScore || 4}/5
               </Text>
             </View>
 
