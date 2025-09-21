@@ -310,9 +310,7 @@ export default function HomeScreen() {
             </TouchableOpacity>
           </View>
           <Image
-            source={{
-              uri: 'https://images.pexels.com/photos/4050299/pexels-photo-4050299.jpeg?auto=compress&cs=tinysrgb&w=120&h=120&fit=crop',
-            }}
+            source={require('../../assets/images/homemate_logoFavWhite.png')}
             style={styles.ctaImage}
           />
         </LinearGradient>
@@ -597,6 +595,9 @@ const styles = StyleSheet.create({
   section: {
     paddingHorizontal: 24,
     marginBottom: 32,
+    // boxShadow: '0px 1px 12px #000000bf',
+    borderRadius: 12,
+    maxWidth: '100%',
   },
   sectionTitle: {
     fontSize: 20,
@@ -608,9 +609,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 12,
+    // boxShadow: '0px 1px px #0000003e',
+    borderRadius: 12,
   },
   quickActionCard: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#f4e1d289',
     borderRadius: 12,
     padding: 16,
     width: (width - 60) / 2,
