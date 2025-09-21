@@ -4,7 +4,9 @@ import {
   MessageCircle,
   User,
   Heart,
+  List,
 } from 'lucide-react-native';
+import { Image } from 'react-native';
 
 export default function TabLayout() {
   return (
@@ -49,7 +51,14 @@ export default function TabLayout() {
         options={{
           title: 'Home',
           tabBarIcon: ({ size, color }) => (
-            <Home size={26} color={color} strokeWidth={2} />
+            <Image
+              source={require('../../assets/images/homemate_logoFavBrown.png')}
+              style={{
+                width: 42,
+                height: 42,
+                tintColor: color, // This will apply the active/inactive colors
+              }}
+            />
           ),
         }}
       />
