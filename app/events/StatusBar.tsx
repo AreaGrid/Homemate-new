@@ -1,10 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
-import { StatusBar } from 'react-native';
+import { StatusBar, StatusBarStyle } from 'react-native';
 
 export function useStatusBarStyle(backgroundColor: string) {
-  const [barStyle, setBarStyle] = useState<'light-content' | 'dark-content'>(
-    'dark-content'
-  );
+  const [barStyle, setBarStyle] = useState<StatusBarStyle>('dark-content');
 
   const calculateBrightness = useCallback((hexColor: string): number => {
     // Remove # if present
@@ -23,10 +21,13 @@ export function useStatusBarStyle(backgroundColor: string) {
     // Calculate background brightness
     const brightness = calculateBrightness(backgroundColor);
 
-    // If background is dark, use light status bar content
-    // If background is light, use dark status bar content
+    // Set status bar style based on background brightness
+    // Use light content (white icons) for dark backgrounds
+    // Use dark content (black icons) for light backgrounds
     setBarStyle(brightness < 128 ? 'light-content' : 'dark-content');
   }, [backgroundColor, calculateBrightness]);
 
-  return barStyle;
+  return (
+    <StatusBar barStyle={barStyle} backgroundColor="transparent" translucent />
+  );
 }

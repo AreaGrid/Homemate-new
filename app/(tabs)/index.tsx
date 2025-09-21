@@ -284,9 +284,9 @@ export default function HomeScreen() {
               <Bell size={20} color="#6B7280" />
               <View style={styles.notificationDot} />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.settingsButton}>
+            {/* <TouchableOpacity style={styles.settingsButton}>
               <Settings size={20} color="#6B7280" />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
         </View>
 

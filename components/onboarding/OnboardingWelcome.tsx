@@ -7,6 +7,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { Heart, Clock, Shield } from 'lucide-react-native';
 import { Button } from '@/src/components/common/Button';
+import { useStatusBarStyle } from '@/hooks/useStatusBarStyle';
 
 interface OnboardingWelcomeProps {
   onStart: () => void;
