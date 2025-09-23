@@ -12,7 +12,14 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
-import { ArrowLeft, Send, Phone, Video, MoveVertical as MoreVertical, Shield } from 'lucide-react-native';
+import {
+  ArrowLeft,
+  Send,
+  Phone,
+  Video,
+  MoveVertical as MoreVertical,
+  Shield,
+} from 'lucide-react-native';
 import ConversationStarters from '@/components/ConversationStarters';
 import { ConversationStarter } from '@/types/matching';
 
@@ -20,20 +27,24 @@ const conversations = [
   {
     id: 1,
     name: 'Emma Rodriguez',
-    lastMessage: 'Thanks for the detailed questions! I think we have very similar living preferences.',
+    lastMessage:
+      'Thanks for the detailed questions! I think we have very similar living preferences.',
     timestamp: '2m ago',
     unread: 2,
-    image: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop',
+    image:
+      'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop',
     verified: true,
     compatibility: 92,
   },
   {
     id: 2,
     name: 'Liam Chen',
-    lastMessage: 'Would you be interested in scheduling a video call this week?',
+    lastMessage:
+      'Would you be interested in scheduling a video call this week?',
     timestamp: '1h ago',
     unread: 0,
-    image: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop',
+    image:
+      'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop',
     verified: true,
     compatibility: 88,
   },
@@ -43,7 +54,8 @@ const conversations = [
     lastMessage: 'The apartment viewing went great! Let me know your thoughts.',
     timestamp: '3h ago',
     unread: 1,
-    image: 'https://images.pexels.com/photos/1130626/pexels-photo-1130626.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop',
+    image:
+      'https://images.pexels.com/photos/1130626/pexels-photo-1130626.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop',
     verified: true,
     compatibility: 85,
   },
@@ -53,7 +65,8 @@ const conversations = [
     lastMessage: 'Looking forward to meeting you at the coffee shop tomorrow!',
     timestamp: '1d ago',
     unread: 0,
-    image: 'https://images.pexels.com/photos/1484794/pexels-photo-1484794.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop',
+    image:
+      'https://images.pexels.com/photos/1484794/pexels-photo-1484794.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop',
     verified: false,
     compatibility: 78,
   },
@@ -62,25 +75,25 @@ const conversations = [
 const chatMessages = [
   {
     id: 1,
-    text: 'Hi Emma! I saw we matched and I\'m really excited about the possibility of living together. Your profile shows we have a lot in common!',
+    text: "Hi Emma! I saw we matched and I'm really excited about the possibility of living together. Your profile shows we have a lot in common!",
     sender: 'me',
     timestamp: '10:30 AM',
   },
   {
     id: 2,
-    text: 'Hi! Thanks for reaching out. I\'m excited too! I love that you\'re into yoga and cooking - those are two of my favorite ways to unwind after work.',
+    text: "Hi! Thanks for reaching out. I'm excited too! I love that you're into yoga and cooking - those are two of my favorite ways to unwind after work.",
     sender: 'them',
     timestamp: '10:35 AM',
   },
   {
     id: 3,
-    text: 'That\'s perfect! I actually teach yoga classes on weekends as a side thing. And I love experimenting with new recipes. What\'s your work schedule like?',
+    text: "That's perfect! I actually teach yoga classes on weekends as a side thing. And I love experimenting with new recipes. What's your work schedule like?",
     sender: 'me',
     timestamp: '10:37 AM',
   },
   {
     id: 4,
-    text: 'That sounds amazing! I work pretty standard hours, 9-6 most days, remote on Fridays. I usually get home around 7 PM. I love that you teach yoga - I\'ve been looking for classes in the area!',
+    text: "That sounds amazing! I work pretty standard hours, 9-6 most days, remote on Fridays. I usually get home around 7 PM. I love that you teach yoga - I've been looking for classes in the area!",
     sender: 'them',
     timestamp: '10:42 AM',
   },
@@ -93,38 +106,40 @@ const chatMessages = [
 ];
 
 export default function MessagesScreen() {
-  const [selectedConversation, setSelectedConversation] = useState<number | null>(null);
+  const [selectedConversation, setSelectedConversation] = useState<
+    number | null
+  >(null);
   const [newMessage, setNewMessage] = useState('');
   const [showStarters, setShowStarters] = useState(true);
 
-  const selectedConv = conversations.find(c => c.id === selectedConversation);
+  const selectedConv = conversations.find((c) => c.id === selectedConversation);
 
   // Sample conversation starters based on compatibility
   const conversationStarters: ConversationStarter[] = [
     {
       id: '1',
-      text: 'I noticed we both value cleanliness - what\'s your favorite way to keep common areas organized?',
+      text: "I noticed we both value cleanliness - what's your favorite way to keep common areas organized?",
       category: 'lifestyle',
-      basedOn: ['Cleanliness preferences', 'Shared living values']
+      basedOn: ['Cleanliness preferences', 'Shared living values'],
     },
     {
       id: '2',
-      text: 'We both enjoy cooking! Do you have any go-to recipes you\'d be willing to share?',
+      text: "We both enjoy cooking! Do you have any go-to recipes you'd be willing to share?",
       category: 'interests',
-      basedOn: ['Cooking interest', 'Shared activities']
+      basedOn: ['Cooking interest', 'Shared activities'],
     },
     {
       id: '3',
       text: 'I see we have similar schedules - how do you usually handle shared expenses?',
       category: 'practical',
-      basedOn: ['Financial habits', 'Practical alignment']
+      basedOn: ['Financial habits', 'Practical alignment'],
     },
     {
       id: '4',
-      text: 'What\'s your ideal balance between socializing and having quiet time at home?',
+      text: "What's your ideal balance between socializing and having quiet time at home?",
       category: 'social',
-      basedOn: ['Social preferences', 'Living compatibility']
-    }
+      basedOn: ['Social preferences', 'Living compatibility'],
+    },
   ];
 
   const sendMessage = () => {
@@ -150,8 +165,8 @@ export default function MessagesScreen() {
   if (selectedConversation) {
     return (
       <SafeAreaView style={styles.container}>
-        <KeyboardAvoidingView 
-          style={{ flex: 1 }} 
+        <KeyboardAvoidingView
+          style={{ flex: 1 }}
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         >
           {/* Chat Header */}
@@ -162,7 +177,7 @@ export default function MessagesScreen() {
             >
               <ArrowLeft size={24} color="#1F2937" />
             </TouchableOpacity>
-            
+
             <View style={styles.chatHeaderInfo}>
               <Image
                 source={{ uri: selectedConv?.image }}
@@ -170,9 +185,15 @@ export default function MessagesScreen() {
               />
               <View style={styles.chatHeaderText}>
                 <View style={styles.chatHeaderName}>
-                  <Text style={styles.chatHeaderNameText}>{selectedConv?.name}</Text>
+                  <Text style={styles.chatHeaderNameText}>
+                    {selectedConv?.name}
+                  </Text>
                   {selectedConv?.verified && (
-                    <Shield size={16} color="#A3B18A" style={{ marginLeft: 4 }} />
+                    <Shield
+                      size={16}
+                      color="#A3B18A"
+                      style={{ marginLeft: 4 }}
+                    />
                   )}
                 </View>
                 <Text style={styles.chatHeaderStatus}>
@@ -180,7 +201,7 @@ export default function MessagesScreen() {
                 </Text>
               </View>
             </View>
-            
+
             <View style={styles.chatHeaderActions}>
               <TouchableOpacity style={styles.chatHeaderAction}>
                 <Phone size={20} color="#735510" />
@@ -195,7 +216,10 @@ export default function MessagesScreen() {
           </View>
 
           {/* Messages */}
-          <ScrollView style={styles.messagesContainer} showsVerticalScrollIndicator={false}>
+          <ScrollView
+            style={styles.messagesContainer}
+            showsVerticalScrollIndicator={false}
+          >
             {/* Conversation Starters */}
             {showStarters && chatMessages.length <= 2 && (
               <ConversationStarters
@@ -203,25 +227,31 @@ export default function MessagesScreen() {
                 onSelect={handleStarterSelect}
               />
             )}
-            
+
             {chatMessages.map((message) => (
               <View
                 key={message.id}
                 style={[
                   styles.messageContainer,
-                  message.sender === 'me' ? styles.myMessage : styles.theirMessage,
+                  message.sender === 'me'
+                    ? styles.myMessage
+                    : styles.theirMessage,
                 ]}
               >
                 <View
                   style={[
                     styles.messageBubble,
-                    message.sender === 'me' ? styles.myMessageBubble : styles.theirMessageBubble,
+                    message.sender === 'me'
+                      ? styles.myMessageBubble
+                      : styles.theirMessageBubble,
                   ]}
                 >
                   <Text
                     style={[
                       styles.messageText,
-                      message.sender === 'me' ? styles.myMessageText : styles.theirMessageText,
+                      message.sender === 'me'
+                        ? styles.myMessageText
+                        : styles.theirMessageText,
                     ]}
                   >
                     {message.text}
@@ -242,7 +272,10 @@ export default function MessagesScreen() {
               multiline
             />
             <TouchableOpacity
-              style={[styles.sendButton, newMessage.trim() ? styles.sendButtonActive : null]}
+              style={[
+                styles.sendButton,
+                newMessage.trim() ? styles.sendButtonActive : null,
+              ]}
               onPress={sendMessage}
             >
               <Send size={20} color="#FFFFFF" />
@@ -259,12 +292,16 @@ export default function MessagesScreen() {
         <Text style={styles.title}>Messages</Text>
         <View style={styles.headerSubtitle}>
           <Text style={styles.subtitle}>
-            {conversations.filter(c => c.unread > 0).length} unread conversations
+            {conversations.filter((c) => c.unread > 0).length} unread
+            conversations
           </Text>
         </View>
       </View>
 
-      <ScrollView style={styles.conversationsList} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        style={styles.conversationsList}
+        showsVerticalScrollIndicator={false}
+      >
         {conversations.map((conversation) => (
           <TouchableOpacity
             key={conversation.id}
@@ -284,7 +321,11 @@ export default function MessagesScreen() {
               <View
                 style={[
                   styles.compatibilityDot,
-                  { backgroundColor: getCompatibilityColor(conversation.compatibility) },
+                  {
+                    backgroundColor: getCompatibilityColor(
+                      conversation.compatibility
+                    ),
+                  },
                 ]}
               />
             </View>
@@ -292,11 +333,13 @@ export default function MessagesScreen() {
             <View style={styles.conversationContent}>
               <View style={styles.conversationHeader}>
                 <Text style={styles.conversationName}>{conversation.name}</Text>
-                <Text style={styles.conversationTime}>{conversation.timestamp}</Text>
+                <Text style={styles.conversationTime}>
+                  {conversation.timestamp}
+                </Text>
               </View>
-              
+
               <View style={styles.conversationFooter}>
-                <Text 
+                <Text
                   style={[
                     styles.conversationMessage,
                     conversation.unread > 0 ? styles.unreadMessage : null,
@@ -307,11 +350,13 @@ export default function MessagesScreen() {
                 </Text>
                 {conversation.unread > 0 && (
                   <View style={styles.unreadBadge}>
-                    <Text style={styles.unreadCount}>{conversation.unread}</Text>
+                    <Text style={styles.unreadCount}>
+                      {conversation.unread}
+                    </Text>
                   </View>
                 )}
               </View>
-              
+
               <View style={styles.compatibilityContainer}>
                 <Text style={styles.compatibilityText}>
                   {conversation.compatibility}% compatible
@@ -326,7 +371,8 @@ export default function MessagesScreen() {
       <View style={styles.safetyNotice}>
         <Shield size={16} color="#E07A5F" />
         <Text style={styles.safetyText}>
-          Always meet in public places and verify identity before sharing personal information.
+          Always meet in public places and verify identity before sharing
+          personal information.
         </Text>
       </View>
     </SafeAreaView>

@@ -13,7 +13,14 @@ import {
   Dimensions,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Calendar, Clock, MapPin, Users, Shield, CircleCheck as CheckCircle } from 'lucide-react-native';
+import {
+  Calendar,
+  Clock,
+  MapPin,
+  Users,
+  Shield,
+  CircleCheck as CheckCircle,
+} from 'lucide-react-native';
 import { Event } from '@/types/events';
 
 const { width } = Dimensions.get('window');
@@ -29,7 +36,7 @@ export const EventCard: React.FC<EventCardProps> = ({ event, onPress }) => {
     return date.toLocaleDateString('en-US', {
       weekday: 'short',
       month: 'short',
-      day: 'numeric'
+      day: 'numeric',
     });
   };
 
@@ -45,7 +52,7 @@ export const EventCard: React.FC<EventCardProps> = ({ event, onPress }) => {
       group_dinner: '#FF6B6B',
       activity_based: '#9B59B6',
       co_working: '#F39C12',
-      house_party: '#E74C3C'
+      house_party: '#E74C3C',
     };
     return colors[type as keyof typeof colors] || '#6B7280';
   };
@@ -58,14 +65,14 @@ export const EventCard: React.FC<EventCardProps> = ({ event, onPress }) => {
       group_dinner: 'Group Dinner',
       activity_based: 'Activity',
       co_working: 'Co-working',
-      house_party: 'House Party'
+      house_party: 'House Party',
     };
     return labels[type as keyof typeof labels] || type;
   };
 
   return (
-    <TouchableOpacity 
-      style={styles.card} 
+    <TouchableOpacity
+      style={styles.card}
       onPress={onPress}
       activeOpacity={0.95}
       accessibilityRole="button"
@@ -74,11 +81,15 @@ export const EventCard: React.FC<EventCardProps> = ({ event, onPress }) => {
       {/* Event Image */}
       <View style={styles.imageContainer}>
         <Image
-          source={{ uri: event.imageUrl || 'https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg' }}
+          source={{
+            uri:
+              event.imageUrl ||
+              'https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg',
+          }}
           style={styles.eventImage}
           resizeMode="cover"
         />
-        
+
         {/* Joined Badge */}
         {event.userHasJoined && (
           <View style={styles.joinedBadge}>
@@ -88,7 +99,12 @@ export const EventCard: React.FC<EventCardProps> = ({ event, onPress }) => {
         )}
 
         {/* Event Type Badge */}
-        <View style={[styles.typeBadge, { backgroundColor: getEventTypeColor(event.type) }]}>
+        <View
+          style={[
+            styles.typeBadge,
+            { backgroundColor: getEventTypeColor(event.type) },
+          ]}
+        >
           <Text style={styles.typeText}>{getEventTypeLabel(event.type)}</Text>
         </View>
       </View>
@@ -99,7 +115,7 @@ export const EventCard: React.FC<EventCardProps> = ({ event, onPress }) => {
           <Text style={styles.title} numberOfLines={2}>
             {event.title}
           </Text>
-          
+
           {/* Host Verification */}
           <View style={styles.hostInfo}>
             <Image
@@ -107,7 +123,11 @@ export const EventCard: React.FC<EventCardProps> = ({ event, onPress }) => {
               style={styles.hostImage}
             />
             {event.host.verificationStatus.id && (
-              <Shield size={12} color="#735510" style={styles.verificationIcon} />
+              <Shield
+                size={12}
+                color="#735510"
+                style={styles.verificationIcon}
+              />
             )}
           </View>
         </View>
@@ -120,18 +140,16 @@ export const EventCard: React.FC<EventCardProps> = ({ event, onPress }) => {
         <View style={styles.details}>
           <View style={styles.detailRow}>
             <Calendar size={16} color="#6B7280" />
-            <Text style={styles.detailText}>
-              {formatDate(event.date)}
-            </Text>
+            <Text style={styles.detailText}>{formatDate(event.date)}</Text>
           </View>
-          
+
           <View style={styles.detailRow}>
             <Clock size={16} color="#6B7280" />
             <Text style={styles.detailText}>
               {formatTime(event.startTime)} - {formatTime(event.endTime)}
             </Text>
           </View>
-          
+
           <View style={styles.detailRow}>
             <MapPin size={16} color="#6B7280" />
             <Text style={styles.detailText} numberOfLines={1}>
@@ -150,7 +168,7 @@ export const EventCard: React.FC<EventCardProps> = ({ event, onPress }) => {
           </View>
 
           {/* Matched Users Indicator */}
-          {event.attendees.some(attendee => attendee.isMatched) && (
+          {event.attendees.some((attendee) => attendee.isMatched) && (
             <View style={styles.matchedIndicator}>
               <View style={styles.matchedDot} />
               <Text style={styles.matchedText}>Matched users</Text>
@@ -172,7 +190,7 @@ export const EventCard: React.FC<EventCardProps> = ({ event, onPress }) => {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#ffffffff',
     borderRadius: 16,
     marginHorizontal: 24,
     marginBottom: 16,
@@ -185,17 +203,17 @@ const styles = StyleSheet.create({
     borderColor: '#F3F4F6',
     overflow: 'hidden',
   },
-  
+
   imageContainer: {
     position: 'relative',
     height: 160,
   },
-  
+
   eventImage: {
     width: '100%',
     height: '100%',
   },
-  
+
   joinedBadge: {
     position: 'absolute',
     top: 12,
@@ -208,13 +226,13 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     gap: 4,
   },
-  
+
   joinedText: {
     fontSize: 12,
     fontFamily: 'Outfit-SemiBold',
     color: '#FFFFFF',
   },
-  
+
   typeBadge: {
     position: 'absolute',
     bottom: 12,
@@ -223,24 +241,24 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
     borderRadius: 8,
   },
-  
+
   typeText: {
     fontSize: 12,
     fontFamily: 'Outfit-SemiBold',
     color: '#FFFFFF',
   },
-  
+
   content: {
     padding: 16,
   },
-  
+
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
     marginBottom: 8,
   },
-  
+
   title: {
     flex: 1,
     fontSize: 18,
@@ -248,18 +266,18 @@ const styles = StyleSheet.create({
     color: '#1F2937',
     marginRight: 12,
   },
-  
+
   hostInfo: {
     position: 'relative',
     alignItems: 'center',
   },
-  
+
   hostImage: {
     width: 32,
     height: 32,
     borderRadius: 16,
   },
-  
+
   verificationIcon: {
     position: 'absolute',
     bottom: -2,
@@ -268,7 +286,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 1,
   },
-  
+
   description: {
     fontSize: 14,
     fontFamily: 'Outfit-Regular',
@@ -276,70 +294,70 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     marginBottom: 12,
   },
-  
+
   details: {
     gap: 6,
     marginBottom: 12,
   },
-  
+
   detailRow: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
   },
-  
+
   detailText: {
     fontSize: 14,
     fontFamily: 'Outfit-Regular',
     color: '#4B5563',
     flex: 1,
   },
-  
+
   footer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 8,
   },
-  
+
   attendeesInfo: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 6,
   },
-  
+
   attendeesText: {
     fontSize: 14,
     fontFamily: 'Outfit-Medium',
     color: '#735510',
   },
-  
+
   matchedIndicator: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 4,
   },
-  
+
   matchedDot: {
     width: 6,
     height: 6,
     backgroundColor: '#10B981',
     borderRadius: 3,
   },
-  
+
   matchedText: {
     fontSize: 12,
     fontFamily: 'Outfit-Regular',
     color: '#10B981',
   },
-  
+
   privateIndicator: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 4,
     alignSelf: 'flex-start',
   },
-  
+
   privateText: {
     fontSize: 12,
     fontFamily: 'Outfit-Medium',

@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, useColorScheme } from 'react-native';
 import { Heart, Clock, Shield } from 'lucide-react-native';
 import { Button } from '@/src/components/common/Button';
 import { useStatusBarStyle } from '@/hooks/useStatusBarStyle';
@@ -18,6 +18,8 @@ export default function OnboardingWelcome({
   onStart,
   onSkip,
 }: OnboardingWelcomeProps) {
+  const colorScheme = useColorScheme();
+  useStatusBarStyle(colorScheme === 'dark' ? '#000000' : '#FFFFFF');
   return (
     <View style={styles.container}>
       <View style={styles.content}>
