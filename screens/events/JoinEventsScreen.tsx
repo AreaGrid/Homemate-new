@@ -15,7 +15,14 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFocusEffect } from '@react-navigation/native';
-import { Search, Filter, Calendar, MapPin, Users } from 'lucide-react-native';
+import {
+  Search,
+  Filter,
+  Calendar,
+  MapPin,
+  Users,
+  ArrowLeft,
+} from 'lucide-react-native';
 import { router } from 'expo-router';
 
 import { EventCard } from '@/components/events/EventCard';
@@ -137,13 +144,19 @@ export default function JoinEventsScreen() {
     <SafeAreaView style={styles.container} edges={['top']}>
       {/* Header */}
       <View style={styles.header}>
+        {' '}
+        <TouchableOpacity
+          style={styles.backButton}
+          onPress={() => router.push('/(tabs)')}
+        >
+          <ArrowLeft size={24} color="#1F2937" />
+        </TouchableOpacity>
         <View style={styles.headerContent}>
           <Text style={styles.title}>Join Events</Text>
           <Text style={styles.subtitle}>
             Meet your potential housemates in person
           </Text>
         </View>
-
         <TouchableOpacity
           style={styles.filterButton}
           onPress={() => setShowFilters(true)}
@@ -246,9 +259,17 @@ const styles = StyleSheet.create({
   headerContent: {
     flex: 1,
   },
+  backButton: {
+    width: 40,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 12,
+  },
 
   title: {
     fontSize: 28,
+    textAlign: 'center',
     fontFamily: 'Outfit-Bold',
     color: '#1F2937',
     marginBottom: 4,
@@ -256,6 +277,7 @@ const styles = StyleSheet.create({
 
   subtitle: {
     fontSize: 16,
+    textAlign: 'center',
     fontFamily: 'Outfit-Regular',
     color: '#6B7280',
   },
