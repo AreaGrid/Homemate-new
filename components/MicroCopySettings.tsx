@@ -12,19 +12,21 @@ export default function MicroCopySettings({
   language,
   onLanguageChange,
   enabled,
-  onToggle
+  onToggle,
 }: MicroCopySettingsProps) {
   return (
     <View style={styles.container}>
       <Text style={styles.sectionTitle}>Inspirational Messages</Text>
-      
+
       <View style={styles.settingItem}>
         <Text style={styles.settingLabel}>Show Messages</Text>
         <TouchableOpacity
           style={[styles.toggle, enabled && styles.toggleActive]}
           onPress={() => onToggle(!enabled)}
         >
-          <View style={[styles.toggleThumb, enabled && styles.toggleThumbActive]} />
+          <View
+            style={[styles.toggleThumb, enabled && styles.toggleThumbActive]}
+          />
         </TouchableOpacity>
       </View>
 
@@ -35,29 +37,33 @@ export default function MicroCopySettings({
             <TouchableOpacity
               style={[
                 styles.languageButton,
-                language === 'english' && styles.languageButtonActive
+                language === 'english' && styles.languageButtonActive,
               ]}
               onPress={() => onLanguageChange('english')}
             >
-              <Text style={[
-                styles.languageButtonText,
-                language === 'english' && styles.languageButtonTextActive
-              ]}>
+              <Text
+                style={[
+                  styles.languageButtonText,
+                  language === 'english' && styles.languageButtonTextActive,
+                ]}
+              >
                 English
               </Text>
             </TouchableOpacity>
-            
+
             <TouchableOpacity
               style={[
                 styles.languageButton,
-                language === 'dutch' && styles.languageButtonActive
+                language === 'dutch' && styles.languageButtonActive,
               ]}
               onPress={() => onLanguageChange('dutch')}
             >
-              <Text style={[
-                styles.languageButtonText,
-                language === 'dutch' && styles.languageButtonTextActive
-              ]}>
+              <Text
+                style={[
+                  styles.languageButtonText,
+                  language === 'dutch' && styles.languageButtonTextActive,
+                ]}
+              >
                 Nederlands
               </Text>
             </TouchableOpacity>

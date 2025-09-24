@@ -209,9 +209,9 @@ export default function MessagesScreen() {
               <TouchableOpacity style={styles.chatHeaderAction}>
                 <Video size={20} color="#735510" />
               </TouchableOpacity>
-              <TouchableOpacity style={styles.chatHeaderAction}>
+              {/* <TouchableOpacity style={styles.chatHeaderAction}>
                 <MoreVertical size={20} color="#6B7280" />
-              </TouchableOpacity>
+              </TouchableOpacity> */}
             </View>
           </View>
 
